@@ -40,4 +40,24 @@ class EmailValidatorTest {
     fun emailValidator_NullEmail_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail(null))
     }
+
+    @Test
+    fun emailValidator_NotGmail_ReturnsFalse() {
+        assertFalse(EmailValidator.isGmail("name@email.com"))
+    }
+
+    @Test
+    fun emailValidator_NotYandex_ReturnsFalse() {
+        assertFalse(EmailValidator.hasYandexDomain("name@email.com"))
+    }
+
+    @Test
+    fun emailValidator_IsGmail_ReturnsTrue() {
+        assertTrue(EmailValidator.isGmail("name@gmail.com"))
+    }
+
+    @Test
+    fun emailValidator_IsYandex_ReturnsTrue() {
+        assertTrue(EmailValidator.hasYandexDomain("name@yandex.com"))
+    }
 }
