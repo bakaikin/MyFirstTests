@@ -32,8 +32,26 @@ class EmailValidator : TextWatcher {
                     ")+"
         )
 
+        private val YANDEX_DOMAIN_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "yandex" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+"
+        )
+
         fun isValidEmail(email: CharSequence?): Boolean {
             return email != null && EMAIL_PATTERN.matcher(email).matches()
+        }
+
+        fun hasYandexDomain(email: CharSequence?): Boolean {
+            return email != null && YANDEX_DOMAIN_PATTERN.matcher(email).matches()
+        }
+
+        fun isGmail(email: CharSequence?): Boolean {
+            return email != null &&  email.endsWith("gmail.com")
         }
     }
 }
